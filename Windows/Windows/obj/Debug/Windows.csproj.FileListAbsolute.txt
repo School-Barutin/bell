@@ -1,0 +1,10 @@
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Windows.csprojAssemblyReference.cache
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Ardeno.Form1.resources
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Windows.Properties.Resources.resources
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Windows.csproj.GenerateResource.cache
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Windows.csproj.CoreCompileInputs.cache
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\bin\Debug\Windows.exe.config
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\bin\Debug\Windows.exe
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\bin\Debug\Windows.pdb
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Windows.exe
+C:\Users\radic\Documents\Arduino\SchoolBell\Windows\Windows\obj\Debug\Windows.pdb
