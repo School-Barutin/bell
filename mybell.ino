@@ -12,24 +12,18 @@ DS3231  rtc(A4, A5);
 unsigned long startMillis = 0;
 unsigned long currentMillis = 0;
 
-int relayState = LOW;
 int bellDuration = 7000; 
+
 unsigned long eventDuration;
+
 String eventName;
+
 unsigned long  timeElapsed;
 
 //h- hour, m- minute of next event
 int h,m;
 
 void selectNextEvent(){
-
-  if((hour()== 14 && minute()> 25) || hour()>14){
-    // after 7 lesson 3 bell
-    h=7; 
-    m=55;
-    eventDuration=(24*60*60000+7*60*60000+54*60000-3500)-(hour()*60*60000 + minute()*60000 + second()*1000);
-    eventName = "1 Mejduchasie 1 zv";
-  }
   
   if(hour()<= 7 && minute()< 55 ){
     //1 lesson 1 bell
@@ -198,6 +192,14 @@ void selectNextEvent(){
     eventName = "7 Chas            ";
   }
   
+//  if((hour()== 14 && minute()>25) || (hour()> 14 && minute()>=25)){
+//     //1 lesson 1 bell
+//    h=14; 
+//    m=25;
+//    eventDuration=5*60000;
+//    eventName = "1 Mejduchasie 1 zv";
+//  }
+  
 }
 
 void setup() {
@@ -213,9 +215,9 @@ void setup() {
   
   rtc.begin();
 
-  rtc.setDOW(MONDAY);     // Set Day-of-Week to SUNDAY
-  rtc.setTime(7, 54, 50);     // Set the time to 12:00:00 (24hr format)
-  rtc.setDate(12, 11, 2018); 
+//  rtc.setDOW(MONDAY);     // Set Day-of-Week to SUNDAY
+//  rtc.setTime(17, 18, 20);     // Set the time to 12:00:00 (24hr format)
+//  rtc.setDate(12, 11, 2018); 
   
   setTime(rtc.getUnixTime(rtc.getTime()));
 
