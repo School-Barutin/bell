@@ -1,5 +1,5 @@
 #include <TimeLib.h>
-#include <TimeAlarms.h>
+
 #include <DS3231.h>
 #include <LiquidCrystal_I2C.h>
 
@@ -18,17 +18,17 @@ unsigned long eventDuration;
 String eventName;
 unsigned long  timeElapsed;
 
-//h- hour, m- minute, d- duration in miliseconds
+//h- hour, m- minute of next event
 int h,m;
 
 void selectNextEvent(){
 
   if((hour()== 14 && minute()> 25) || hour()>14){
-    //1 lesson 1 bell
+    // after 7 lesson 3 bell
     h=7; 
     m=55;
     eventDuration=(24*60*60000+7*60*60000+54*60000-3500)-(hour()*60*60000 + minute()*60000 + second()*1000);
-    eventName = "Do Utre - 1 Mejduchasie 1 zv";
+    eventName = "1 Mejduchasie 1 zv";
   }
   
   if(hour()<= 7 && minute()< 55 ){
@@ -205,7 +205,9 @@ void setup() {
   Serial.begin(9600);
   
   pinMode(relay, OUTPUT);
+  
   digitalWrite(relay, HIGH);
+  
   lcd.init();  
   lcd.backlight(); 
   
@@ -218,9 +220,6 @@ void setup() {
   setTime(rtc.getUnixTime(rtc.getTime()));
 
   selectNextEvent();
-  //setTime(8,29,0,1,1,11); // set time to Saturday 8:29:00am Jan 1 2011
-
-  //Alarm.alarmRepeat(7,55,00, FirstBellAlarm1);  // 8:30am every day
   
 }
 
@@ -235,25 +234,24 @@ void loop() {
 
   timeElapsed = currentMillis-startMillis;
 
-  if(timeElapsed<=bellDuration && startMillis>0){
+  if( timeElapsed <= bellDuration && startMillis > 0){
     digitalWrite(relay, LOW);
   }
   else {
     digitalWrite(relay, HIGH);
   }
 
-
   lcd.setCursor(15, 3);
-  if(((eventDuration - timeElapsed)/60000)<10)
-    lcd.print("0");
+    if(((eventDuration - timeElapsed)/60000)<10)
+      lcd.print("0");
   lcd.print((eventDuration - timeElapsed)/60000);
 
   lcd.setCursor(17, 3);
   lcd.print(F(":"));
   
   lcd.setCursor(18, 3);
-  if(((eventDuration - timeElapsed)%60000)<10)
-    lcd.print("0");
+    if(((eventDuration - timeElapsed)%60000)<10)
+      lcd.print("0");
   lcd.print((eventDuration - timeElapsed)%60000);
   
   lcd.setCursor(0, 0);
@@ -271,16 +269,10 @@ void loop() {
 
   lcd.setCursor(0, 2);
   lcd.print(eventName);
-  
-  printNextEvent(h,m);
 
-}
-
-void printNextEvent(int h, int m){
-  
   lcd.setCursor(0, 3);
-  if(h<10)
-    lcd.print("0");
+    if(h<10)
+      lcd.print("0");
   lcd.print(h);
 
   lcd.setCursor(2, 3);
@@ -288,7 +280,7 @@ void printNextEvent(int h, int m){
 
   lcd.setCursor(3, 3);
     if(m<10)
-    lcd.print("0");
+      lcd.print("0");
   lcd.print(m);
 
   lcd.setCursor(5, 3);
@@ -296,7 +288,4 @@ void printNextEvent(int h, int m){
 
   lcd.setCursor(10, 3);
   lcd.print(F("Ost:"));
-
-//  lcd.setCursor(15, 3);
-//  lcd.print(F("05:00"));
 }
